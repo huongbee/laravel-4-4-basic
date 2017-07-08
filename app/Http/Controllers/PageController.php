@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use DB;
+use App\Products;
+use App\TypeProduct;
 
 class PageController extends Controller
 {
@@ -159,5 +161,36 @@ class PageController extends Controller
                         ->where('type_products.name','Bánh ngọt')
                         ->groupBy('type_products.name','products.name')->get();
         dd($sanpham); 
+    }
+
+
+    public function getTestModel(){
+        // $sanpham = Products::all();
+        // // foreach ($sanpham  as $value) {
+        // //     echo $value->name.'<br>';
+        // // }
+
+        /*$sanpham = TypeProduct::with('Products')->get();
+        foreach ($sanpham as $sp) { //cho arr loại sp
+            foreach($sp->Products as $v){ //cho arr sp theo từng loại
+                echo "Tên sp: ".$v->name.'<br>';
+            }
+            
+        }
+        dd($sanpham); 
+        */
+        $a = 2;
+        $b= 3;
+        $dongia = Products::selectRaw("avg(unit_price) as dongiatrunghinh, type_products.name")
+                ->join('type_products',function($query) use($a,$b) {
+                    $query->on('type_products.id','=','products.id_type');
+                    $query->where('type_products.name','=','Bánh ngọt');
+                    $query->where('type_products.id','=',$a);
+                })
+                ->groupBy('type_products.name')
+                ->first();
+        dd($dongia);
+
+
     }
 }

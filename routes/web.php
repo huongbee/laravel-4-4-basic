@@ -79,3 +79,7 @@ Route::group(['prefix'=>'template'],function(){
 
 
 Route::get('sanpham','PageController@getListProduct');
+
+
+
+Route::get('model','PageController@getTestModel');
