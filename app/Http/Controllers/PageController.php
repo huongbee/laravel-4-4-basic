@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use DB;
 use App\Products;
 use App\TypeProduct;
+use Auth;
 
 class PageController extends Controller
 {
@@ -23,17 +24,58 @@ class PageController extends Controller
     	//return view('welcome',['name'=>$ten, 'message'=>'Gửi thành công']);
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public function getLogin(){
     	return view('login');
     }
     public function postLogin(Request $req){
-    	print_r($req->input('username.0'));
+    	/*$arr = array(
+                        'email'=>$req->username,
+                        'password'=>$req->password
+                    );*/
 
-    	// if($req->has('username')){
-    	// 	//$req->username
-    	// 	echo $req->input('username');
-    	// }
+        if(Auth::check()){
+            return view('trang_quan_tri');
+        }
+        else{
+            echo 'sai thông tin';
+        }
     }
+
+    function getLogout(){
+        Auth::logout();
+        echo 'Đã logout';
+    }
+
+
+    // public function getAdmin(){
+    //     return view('trang_quan_tri');
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function setCookie(){

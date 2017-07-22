@@ -9,10 +9,9 @@
 <body>
 	<form method="POST" action="{{route('login')}}">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
-		Username1: <input type="text" name="username[]" placeholder="Nhập username 1">
+		Username: <input type="text" name="username" placeholder="Nhập username">
 		<br><br>
-		Username2: <input type="text" name="username[]" placeholder="Nhập username 2">
-		<br><br>
+		
 		Password: <input type="password" name="password" placeholder="Nhập mật khẩu">
 		<br><br>
 		<button type="submit">Login</button>

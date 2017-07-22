@@ -14,12 +14,50 @@
 Route::get('trang-chu/{name}', 'PageController@getIndex');
 
 
-Route::get('login', 'PageController@getLogin');
+
+
+
+
+
+
+
+
+Route::get('login', 'PageController@getLogin')->name('login');
 
 Route::post('login',[
+	'middleware'=>'KiemTraLogin',
 	'as'=>'login',
 	'uses'=>'PageController@postLogin'
 ]);
+Route::get('logout', 'PageController@getLogout')->name('logout');
+
+
+// Route::get('admin',[
+// 	'middleware'=>'KiemTraLogin',
+// 	'as'=>'trangquantri',
+// 	'uses'=>'PageController@getAdmin'
+// ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
